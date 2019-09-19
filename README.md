@@ -1,7 +1,5 @@
-# pure sh bible
-
-A collection of pure POSIX `sh` alternatives to external processes
-
+<h1 align="center">pure sh bible</h1> <p
+align="center">A collection of pure POSIX `sh` alternatives to external processes.</p>
 
 **NOTE**: If anything seen here is **not** POSIX `sh`, open an issue. This is a living document that is open to change and improvement.
 
