@@ -17,6 +17,8 @@ A collection of pure POSIX `sh` alternatives to external processes
 * [FILES](#files)
     * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
     * [Get the number of lines in a file](#get-the-number-of-lines-in-a-file)
+    * [Count files or directories in directory](#count-files-or-directories-in-directory)
+    * [Create an empty file](#create-an-empty-file)
 
 <!-- vim-markdown-toc -->
 
@@ -201,4 +203,45 @@ lines() {
 ```shell
 $ lines ~/.bashrc
 48
+```
+
+## Count files or directories in directory
+
+This works by passing the output of the glob to the function and then counting the number of arguments.
+
+**Example Function:**
+
+```sh
+count() {
+    # Usage: count /path/to/dir/*
+    #        count /path/to/dir/*/
+    printf '%s\n' "$#"
+}
+```
+
+**Example Usage:**
+
+```shell
+# Count all files in dir.
+$ count ~/Downloads/*
+232
+
+# Count all dirs in dir.
+$ count ~/Downloads/*/
+45
+
+# Count all jpg files in dir.
+$ count ~/Pictures/*.jpg
+64
+```
+
+## Create an empty file
+
+Alternative to `touch`.
+
+```shell
+:>file
+
+# OR (shellcheck warns for this)
+>file
 ```
