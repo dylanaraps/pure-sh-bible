@@ -487,11 +487,8 @@ dirname() {
     # Usage: dirname "path"
     dir=${1%%/}
 
-    # If there are no '/' in the path, use '.'.
-    case $dir in
-        */*) ;;
-        *) dir=.
-    esac
+    [ "$dir" ] || dir=//
+    [ "${dir##*/*}" ] && dir=.
 
     printf '%s\n' "${dir%/*}"
 }
