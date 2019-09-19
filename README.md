@@ -511,7 +511,7 @@ Alternative to the `basename` command.
 
 ```sh
 basename() {
-    # Usage: basename "path"
+    # Usage: basename "path" ["suffix"]
     dir=${1%${1##*[!/]}}
     dir=${dir##*/}
     dir=${dir%"$2"}
@@ -525,6 +525,9 @@ basename() {
 ```shell
 $ basename ~/Pictures/Wallpapers/1.jpg
 1.jpg
+
+$ basename ~/Pictures/Wallpapers/1.jpg .jpg
+1
 
 $ basename ~/Pictures/Downloads/
 Downloads
