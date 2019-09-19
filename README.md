@@ -6,7 +6,7 @@ A collection of pure POSIX `sh` alternatives to external processes
 **NOTE**: If anything seen here is **not** POSIX `sh`, open an issue. This is a living document that is open to change and improvement.
 
 
-## Table of Contents
+# Table of Contents
 
 <!-- vim-markdown-toc GFM -->
 
