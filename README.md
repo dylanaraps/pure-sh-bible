@@ -512,8 +512,11 @@ Alternative to the `basename` command.
 ```sh
 basename() {
     # Usage: basename "path"
-    path=${1%/}
-    printf '%s\n' "${path##*/}"
+    dir=${1%${1##*[!/]}}
+    dir=${dir##*/}
+    dir=${dir%"$2"}
+
+    printf '%s\n' "${dir:-/}"
 }
 ```
 
