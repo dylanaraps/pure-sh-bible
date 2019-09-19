@@ -32,6 +32,8 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
     * [Loop over a variable range of numbers](#loop-over-a-variable-range-of-numbers)
     * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
     * [Loop over files and directories](#loop-over-files-and-directories)
+* [VARIABLES](#variables)
+    * [Name a variable based on another variable](#name-a-variable-based-on-another-variable)
 * [ESCAPE SEQUENCES](#escape-sequences)
     * [Text Colors](#text-colors)
     * [Text Attributes](#text-attributes)
@@ -557,6 +559,17 @@ done
 for dir in ~/Downloads/*/; do
     printf '%s\n' "$dir"
 done
+```
+
+# VARIABLES
+
+## Name a variable based on another variable
+
+```shell
+$ var="world"
+$ export "hello_$var=value"
+$ printf '%s\n' "$hello_world"
+value
 ```
 
 # ESCAPE SEQUENCES
