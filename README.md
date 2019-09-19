@@ -17,6 +17,7 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
     * [Check if string starts with sub-string](#check-if-string-starts-with-sub-string)
     * [Check if string ends with sub-string](#check-if-string-ends-with-sub-string)
     * [Split a string on a delimiter](#split-a-string-on-a-delimiter)
+    * [Trim quotes from a string](#trim-quotes-from-a-string)
 * [FILES](#files)
     * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
     * [Get the number of lines in a file](#get-the-number-of-lines-in-a-file)
@@ -234,6 +235,10 @@ split() {
     # This ensures that the word-splitting is safe.
     set -f
 
+    # Store the current value of 'IFS' so we
+    # can restore it later.
+    old_ifs=$IFS
+
     # Change the field separator to what we're
     # splitting on.
     IFS=$2
@@ -248,6 +253,9 @@ split() {
 
     # Print each list value on its own line.
     printf '%s\n' "$@"
+
+    # Restore the value of 'IFS'.
+    IFS=$old_ifs
 
     # Re-enable globbing.
     set +f
@@ -269,6 +277,56 @@ $ split "1, 2, 3, 4, 5" ", "
 3
 4
 5
+```
+
+## Trim quotes from a string
+
+**Example Function:**
+
+```sh
+trim_quotes() {
+    # Usage: trim_quotes "string"
+
+    # Disable globbing.
+    # This makes the word-splitting below safe.
+    set -f
+
+    # Store the current value of 'IFS' so we
+    # can restore it later.
+    old_ifs=$IFS
+
+    # Set 'IFS' to ["'].
+    IFS=\"\'
+
+    # Create an argument list, splitting the
+    # string at ["'].
+    #
+    # Disable this shellcheck error as it only
+    # warns about word-splitting which we expect.
+    # shellcheck disable=2086
+    set -- $1
+
+    # Set 'IFS' to blank to remove spaces left
+    # by the removal of ["'].
+    IFS=
+
+    # Print the quote-less string.
+    printf '%s\n' "$*"
+
+    # Restore the value of 'IFS'.
+    IFS=$old_ifs
+
+    # Re-enable globbing.
+    set +f
+}
+```
+
+**Example Usage:**
+
+```shell
+$ var="'Hello', \"World\""
+$ trim_quotes "$var"
+Hello, World
 ```
 
 # FILES
