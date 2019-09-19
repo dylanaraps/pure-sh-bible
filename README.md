@@ -3,6 +3,9 @@
 A collection of pure POSIX `sh` alternatives to external processes
 
 
+**NOTE**: If anything seen here is **not** POSIX `sh`, open an issue. This is a living document that is open to change and improvement.
+
+
 ## Table of Contents
 
 <!-- vim-markdown-toc GFM -->
@@ -35,6 +38,12 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [File Conditionals](#file-conditionals)
     * [Variable Conditionals](#variable-conditionals)
     * [Variable Comparisons](#variable-comparisons)
+* [ARITHMETIC OPERATORS](#arithmetic-operators)
+    * [Assignment](#assignment)
+    * [Arithmetic](#arithmetic)
+    * [Bitwise](#bitwise)
+    * [Logical](#logical)
+    * [Miscellaneous](#miscellaneous)
 
 <!-- vim-markdown-toc -->
 
@@ -441,4 +450,59 @@ For use in `[ ]` `if [ ]; then` and `test`.
 | `var -ge var2` | Greater than or equal to (*algebraically*).
 | `var -lt var2` | Less than (*algebraically*).
 | `var -le var2` | Less than or equal to (*algebraically*).
+
+
+# ARITHMETIC OPERATORS
+
+## Assignment
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `=`       | Initialize or change the value of a variable.
+
+## Arithmetic
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `+` | Addition
+| `-` | Subtraction
+| `*` | Multiplication
+| `/` | Division
+| `**` | Exponentiation
+| `%` | Modulo
+| `+=` | Plus-Equal (*Increment a variable.*)
+| `-=` | Minus-Equal (*Decrement a variable.*)
+| `*=` | Times-Equal (*Multiply a variable.*)
+| `/=` | Slash-Equal (*Divide a variable.*)
+| `%=` | Mod-Equal (*Remainder of dividing a variable.*)
+
+## Bitwise
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `<<` | Bitwise Left Shift
+| `<<=` | Left-Shift-Equal
+| `>>` | Bitwise Right Shift
+| `>>=` | Right-Shift-Equal
+| `&` | Bitwise AND
+| `&=` | Bitwise AND-Equal
+| `\|` | Bitwise OR
+| `\|=` | Bitwise OR-Equal
+| `~` | Bitwise NOT
+| `^` | Bitwise XOR
+| `^=` | Bitwise XOR-Equal
+
+## Logical
+
+| Operators | What does it do? |
+| --------- | ---------------- |
+| `!` | NOT
+| `&&` | AND
+| `\|\|` | OR
+
+## Miscellaneous
+
+| Operators | What does it do? | Example |
+| --------- | ---------------- | ------- |
+| `,` | Comma Separator | `((a=1,b=2,c=3))`
 
