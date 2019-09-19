@@ -44,6 +44,8 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [Bitwise](#bitwise)
     * [Logical](#logical)
     * [Miscellaneous](#miscellaneous)
+* [ARITHMETIC](#arithmetic-1)
+    * [Ternary Tests](#ternary-tests)
 
 <!-- vim-markdown-toc -->
 
@@ -506,3 +508,15 @@ For use in `[ ]` `if [ ]; then` and `test`.
 | --------- | ---------------- | ------- |
 | `,` | Comma Separator | `((a=1,b=2,c=3))`
 
+
+# ARITHMETIC
+
+## Ternary Tests
+
+```shell
+# Set the value of var to var2 if var2 is greater than var.
+# 'var2 > var': Condition to test.
+# '? var2': If the test succeeds.
+# ': var': If the test fails.
+var=$((var2 > var ? var2 : var))
+```
