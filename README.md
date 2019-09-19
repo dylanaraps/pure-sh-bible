@@ -201,7 +201,4 @@ lines() {
 ```shell
 $ lines ~/.bashrc
 48
-
-$ lines_loop ~/.bashrc
-48
 ```
