@@ -31,6 +31,10 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [Replacement](#replacement)
     * [Length](#length)
     * [Default Value](#default-value)
+* [CONDITIONAL EXPRESSIONS](#conditional-expressions)
+    * [File Conditionals](#file-conditionals)
+    * [Variable Conditionals](#variable-conditionals)
+    * [Variable Comparisons](#variable-comparisons)
 
 <!-- vim-markdown-toc -->
 
@@ -391,4 +395,48 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 | `${VAR+STRING}` | If `VAR` is set, use `STRING` as its value.
 | `${VAR:?STRING}` | Display an error if empty or unset.
 | `${VAR?STRING}` | Display an error if unset.
+
+
+# CONDITIONAL EXPRESSIONS
+
+## File Conditionals
+
+| Expression | Value  | What does it do? |
+| ---------- | ------ | ---------------- |
+| `-b`       | `file` | If file exists and is a block special file.
+| `-c`       | `file` | If file exists and is a character special file.
+| `-d`       | `file` | If file exists and is a directory.
+| `-e`       | `file` | If file exists.
+| `-f`       | `file` | If file exists and is a regular file.
+| `-g`       | `file` | If file exists and its set-group-id bit is set.
+| `-h`       | `file` | If file exists and is a symbolic link.
+| `-p`       | `file` | If file exists and is a named pipe (*FIFO*).
+| `-r`       | `file` | If file exists and is readable.
+| `-s`       | `file` | If file exists and its size is greater than zero.
+| `-t`       | `fd`   | If file descriptor is open and refers to a terminal.
+| `-u`       | `file` | If file exists and its set-user-id bit is set.
+| `-w`       | `file` | If file exists and is writable.
+| `-x`       | `file` | If file exists and is executable.
+| `-L`       | `file` | If file exists and is a symbolic link.
+| `-S`       | `file` | If file exists and is a socket.
+
+## Variable Conditionals
+
+| Expression | Value | What does it do? |
+| ---------- | ----- | ---------------- |
+| `-z`       | `var` | If the length of string is zero.
+| `-n`       | `var` | If the length of string is non-zero.
+
+## Variable Comparisons
+
+| Expression | What does it do? |
+| ---------- | ---------------- |
+| `var = var2` | Equal to.
+| `var != var2` | Not equal to.
+| `var -eq var2` | Equal to (*algebraically*).
+| `var -ne var2` | Not equal to (*algebraically*).
+| `var -gt var2` | Greater than (*algebraically*).
+| `var -ge var2` | Greater than or equal to (*algebraically*).
+| `var -lt var2` | Less than (*algebraically*).
+| `var -le var2` | Less than or equal to (*algebraically*).
 
