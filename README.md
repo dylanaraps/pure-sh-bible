@@ -2,7 +2,7 @@
 
 <br>
 
-<p align="center"><img src="https://user-images.githubusercontent.com/6799467/65238742-e0ba4c80-dacc-11e9-9c2a-3dd20a6f138d.png" width="200px"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/6799467/65238742-e0ba4c80-dacc-11e9-9c2a-3dd20a6f138d.png" width="250px"></p>
 <h1 align="center">pure sh bible</h1> <p
 align="center">A collection of pure POSIX sh alternatives to external processes.</p><br><br>
 
