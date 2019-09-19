@@ -46,6 +46,9 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [Miscellaneous](#miscellaneous)
 * [ARITHMETIC](#arithmetic-1)
     * [Ternary Tests](#ternary-tests)
+* [TRAPS](#traps)
+    * [Do something on script exit](#do-something-on-script-exit)
+    * [Ignore terminal interrupt (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
 
 <!-- vim-markdown-toc -->
 
@@ -519,4 +522,27 @@ For use in `[ ]` `if [ ]; then` and `test`.
 # '? var2': If the test succeeds.
 # ': var': If the test fails.
 var=$((var2 > var ? var2 : var))
+```
+
+# TRAPS
+
+Traps allow a script to execute code on various signals. In [pxltrm](https://github.com/dylanaraps/pxltrm) (*a pixel art editor written in bash*)  traps are used to redraw the user interface on window resize. Another use case is cleaning up temporary files on script exit.
+
+Traps should be added near the start of scripts so any early errors are also caught.
+
+## Do something on script exit
+
+```shell
+# Clear screen on script exit.
+trap 'printf \\e[2J\\e[H\\e[m' EXIT
+
+# Run a function on script exit.
+# 'clean_up' is the name of a function.
+trap clean_up EXIT
+```
+
+## Ignore terminal interrupt (CTRL+C, SIGINT)
+
+```shell
+trap '' INT
 ```
