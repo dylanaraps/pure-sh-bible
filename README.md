@@ -27,6 +27,10 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [Text Attributes](#text-attributes)
     * [Cursor Movement](#cursor-movement)
     * [Erasing Text](#erasing-text)
+* [PARAMETER EXPANSION](#parameter-expansion)
+    * [Replacement](#replacement)
+    * [Length](#length)
+    * [Default Value](#default-value)
 
 <!-- vim-markdown-toc -->
 
@@ -357,4 +361,34 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 | `\e[2J` | Clear the screen.
 | `\e[2J\e[H` | Clear the screen and move cursor to `0,0`.
 
+
+# PARAMETER EXPANSION
+
+## Replacement
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${VAR#PATTERN}` | Remove shortest match of pattern from start of string. |
+| `${VAR##PATTERN}` | Remove longest match of pattern from start of string. |
+| `${VAR%PATTERN}` | Remove shortest match of pattern from end of string. |
+| `${VAR%%PATTERN}` | Remove longest match of pattern from end of string. |
+
+## Length
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${#VAR}` | Length of var in characters.
+
+## Default Value
+
+| Parameter | What does it do? |
+| --------- | ---------------- |
+| `${VAR:-STRING}` | If `VAR` is empty or unset, use `STRING` as its value.
+| `${VAR-STRING}` | If `VAR` is unset, use `STRING` as its value.
+| `${VAR:=STRING}` | If `VAR` is empty or unset, set the value of `VAR` to `STRING`.
+| `${VAR=STRING}` | If `VAR` is unset, set the value of `VAR` to `STRING`.
+| `${VAR:+STRING}` | If `VAR` is not empty, use `STRING` as its value.
+| `${VAR+STRING}` | If `VAR` is set, use `STRING` as its value.
+| `${VAR:?STRING}` | Display an error if empty or unset.
+| `${VAR?STRING}` | Display an error if unset.
 
