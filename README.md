@@ -9,6 +9,7 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
 <!-- vim-markdown-toc GFM -->
 
 * [STRINGS](#strings)
+    * [Trim leading and trailing white-space from string](#trim-leading-and-trailing-white-space-from-string)
     * [Strip pattern from start of string](#strip-pattern-from-start-of-string)
     * [Strip pattern from end of string](#strip-pattern-from-end-of-string)
     * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
@@ -59,6 +60,35 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
 
 
 # STRINGS
+
+## Trim leading and trailing white-space from string
+
+This is an alternative to `sed`, `awk`, `perl` and other tools. The
+function below works by finding all leading and trailing white-space and
+removing it from the start and end of the string.
+
+**Example Function:**
+
+```sh
+trim_string() {
+    # Usage: trim_string "   example   string    "
+    trim=${1#${1%%[![:space:]]*}}
+    trim=${trim%${trim##*[![:space:]]}}
+
+    printf '%s\n' "$trim"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ trim_string "    Hello,  World    "
+Hello,  World
+
+$ name="   John Black  "
+$ trim_string "$name"
+John Black
+```
 
 ## Strip pattern from start of string
 
