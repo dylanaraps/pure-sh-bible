@@ -617,6 +617,8 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 | `\033[4m` | Underline text. |
 | `\033[5m` | Slow blink. |
 | `\033[7m` | Swap foreground and background colors. |
+| `\033[8m` | Hidden text. |
+| `\033[9m` | Strike-through text. |
 
 
 ## Cursor Movement
