@@ -1,5 +1,5 @@
 <h1 align="center">pure sh bible</h1> <p
-align="center">A collection of pure POSIX `sh` alternatives to external processes.</p>
+align="center">A collection of pure POSIX `sh` alternatives to external processes.</p><br><br>
 
 **NOTE**: If anything seen here is **not** POSIX `sh`, open an issue. This is a living document that is open to change and improvement.
 
