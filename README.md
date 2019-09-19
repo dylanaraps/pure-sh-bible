@@ -25,6 +25,11 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
 * [FILE PATHS](#file-paths)
     * [Get the directory name of a file path](#get-the-directory-name-of-a-file-path)
     * [Get the base-name of a file path](#get-the-base-name-of-a-file-path)
+* [LOOPS](#loops)
+    * [Loop over a (*small*) range of numbers](#loop-over-a-small-range-of-numbers)
+    * [Loop over a variable range of numbers](#loop-over-a-variable-range-of-numbers)
+    * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
+    * [Loop over files and directories](#loop-over-files-and-directories)
 * [ESCAPE SEQUENCES](#escape-sequences)
     * [Text Colors](#text-colors)
     * [Text Attributes](#text-attributes)
@@ -408,6 +413,63 @@ $ basename ~/Pictures/Wallpapers/1.jpg
 
 $ basename ~/Pictures/Downloads/
 Downloads
+```
+
+# LOOPS
+
+## Loop over a (*small*) range of numbers
+
+Alternative to `seq` and only suitable for small and static number ranges. The number list can also be replaced with a list of words, variables etc.
+
+```shell
+# Loop from 0-10.
+for i in 0 1 2 3 4 5 6 7 8 9 10; do
+    printf '%s\n' "$i"
+done
+```
+
+## Loop over a variable range of numbers
+
+Alternative to `seq`.
+
+```shell
+# Loop from var-var.
+start=0
+end=50
+
+while [ "$start" -le "$end" ]; do
+    printf '%s\n' "$start"
+    start=$((start+1))
+done
+```
+
+## Loop over the contents of a file
+
+```shell
+while read -r line; do
+    printf '%s\n' "$line"
+done < "file"
+```
+
+## Loop over files and directories
+
+Don’t use `ls`.
+
+```shell
+# Greedy example.
+for file in *; do
+    printf '%s\n' "$file"
+done
+
+# PNG files in dir.
+for file in ~/Pictures/*.png; do
+    printf '%s\n' "$file"
+done
+
+# Iterate over directories.
+for dir in ~/Downloads/*/; do
+    printf '%s\n' "$dir"
+done
 ```
 
 # ESCAPE SEQUENCES
