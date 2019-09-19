@@ -19,6 +19,9 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [Get the number of lines in a file](#get-the-number-of-lines-in-a-file)
     * [Count files or directories in directory](#count-files-or-directories-in-directory)
     * [Create an empty file](#create-an-empty-file)
+* [FILE PATHS](#file-paths)
+    * [Get the directory name of a file path](#get-the-directory-name-of-a-file-path)
+    * [Get the base-name of a file path](#get-the-base-name-of-a-file-path)
 
 <!-- vim-markdown-toc -->
 
@@ -244,4 +247,53 @@ Alternative to `touch`.
 
 # OR (shellcheck warns for this)
 >file
+```
+
+# FILE PATHS
+
+## Get the directory name of a file path
+
+Alternative to the `dirname` command.
+
+**Example Function:**
+
+```sh
+dirname() {
+    # Usage: dirname "path"
+    printf '%s\n' "${1%/*}/"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ dirname ~/Pictures/Wallpapers/1.jpg
+/home/black/Pictures/Wallpapers/
+
+$ dirname ~/Pictures/Downloads/
+/home/black/Pictures/
+```
+
+## Get the base-name of a file path
+
+Alternative to the `basename` command.
+
+**Example Function:**
+
+```sh
+basename() {
+    # Usage: basename "path"
+    path=${1%/}
+    printf '%s\n' "${path##*/}"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ basename ~/Pictures/Wallpapers/1.jpg
+1.jpg
+
+$ basename ~/Pictures/Downloads/
+Downloads
 ```
