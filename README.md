@@ -355,7 +355,6 @@ while IFS='=' read -r key val; do
     # export "$key=$val"
     #
     # Example with error handling:
-    #
     # export "$key=$val" 2>/dev/null ||
     #     printf 'warning %s is not a valid variable name\n' "$key"
 done < "file"
