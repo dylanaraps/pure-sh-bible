@@ -49,6 +49,8 @@ A collection of pure POSIX `sh` alternatives to external processes
 * [TRAPS](#traps)
     * [Do something on script exit](#do-something-on-script-exit)
     * [Ignore terminal interrupt (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
+* [OBSOLETE SYNTAX](#obsolete-syntax)
+    * [Command Substitution](#command-substitution)
 
 <!-- vim-markdown-toc -->
 
@@ -545,4 +547,21 @@ trap clean_up EXIT
 
 ```shell
 trap '' INT
+```
+
+# OBSOLETE SYNTAX
+
+## Command Substitution
+
+Use `$()` instead of `` ` ` ``.
+
+```shell
+# Right.
+var="$(command)"
+
+# Wrong.
+var=`command`
+
+# $() can easily be nested whereas `` cannot.
+var="$(command "$(command)")"
 ```
