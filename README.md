@@ -9,9 +9,9 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
 <!-- vim-markdown-toc GFM -->
 
 * [STRINGS](#strings)
-    * [Trim leading and trailing white-space from string](#trim-leading-and-trailing-white-space-from-string)
     * [Strip pattern from start of string](#strip-pattern-from-start-of-string)
     * [Strip pattern from end of string](#strip-pattern-from-end-of-string)
+    * [Trim leading and trailing white-space from string](#trim-leading-and-trailing-white-space-from-string)
     * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
     * [Check if string contains a sub-string](#check-if-string-contains-a-sub-string)
     * [Check if string starts with sub-string](#check-if-string-starts-with-sub-string)
@@ -61,35 +61,6 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
 
 # STRINGS
 
-## Trim leading and trailing white-space from string
-
-This is an alternative to `sed`, `awk`, `perl` and other tools. The
-function below works by finding all leading and trailing white-space and
-removing it from the start and end of the string.
-
-**Example Function:**
-
-```sh
-trim_string() {
-    # Usage: trim_string "   example   string    "
-    trim=${1#${1%%[![:space:]]*}}
-    trim=${trim%${trim##*[![:space:]]}}
-
-    printf '%s\n' "$trim"
-}
-```
-
-**Example Usage:**
-
-```shell
-$ trim_string "    Hello,  World    "
-Hello,  World
-
-$ name="   John Black  "
-$ trim_string "$name"
-John Black
-```
-
 ## Strip pattern from start of string
 
 **Example Function:**
@@ -124,6 +95,35 @@ rstrip() {
 ```shell
 $ rstrip "The Quick Brown Fox" " Fox"
 The Quick Brown
+```
+
+## Trim leading and trailing white-space from string
+
+This is an alternative to `sed`, `awk`, `perl` and other tools. The
+function below works by finding all leading and trailing white-space and
+removing it from the start and end of the string.
+
+**Example Function:**
+
+```sh
+trim_string() {
+    # Usage: trim_string "   example   string    "
+    trim=${1#${1%%[![:space:]]*}}
+    trim=${trim%${trim##*[![:space:]]}}
+
+    printf '%s\n' "$trim"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ trim_string "    Hello,  World    "
+Hello,  World
+
+$ name="   John Black  "
+$ trim_string "$name"
+John Black
 ```
 
 ## Trim all white-space from string and truncate spaces
