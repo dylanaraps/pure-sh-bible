@@ -399,6 +399,8 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 
 # CONDITIONAL EXPRESSIONS
 
+For use in `[ ]` `if [ ]; then` and `test`.
+
 ## File Conditionals
 
 | Expression | Value  | What does it do? |
