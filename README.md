@@ -11,6 +11,9 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [Strip pattern from start of string](#strip-pattern-from-start-of-string)
     * [Strip pattern from end of string](#strip-pattern-from-end-of-string)
     * [Trim all white-space from string and truncate spaces](#trim-all-white-space-from-string-and-truncate-spaces)
+    * [Check if string contains a sub-string](#check-if-string-contains-a-sub-string)
+    * [Check if string starts with sub-string](#check-if-string-starts-with-sub-string)
+    * [Check if string ends with sub-string](#check-if-string-ends-with-sub-string)
 
 <!-- vim-markdown-toc -->
 
@@ -81,4 +84,64 @@ Hello, World
 $ name="   John   Black  is     my    name.    "
 $ trim_all "$name"
 John Black is my name.
+```
+
+## Check if string contains a sub-string
+
+**Using a case statement:**
+
+```shell
+case $var in
+    *sub_string*)
+        # Do stuff
+    ;;
+
+    *sub_string2*)
+        # Do more stuff
+    ;;
+
+    *)
+        # Else
+    ;;
+esac
+```
+
+## Check if string starts with sub-string
+
+**Using a case statement:**
+
+```shell
+case $var in
+    sub_string*)
+        # Do stuff
+    ;;
+
+    sub_string2*)
+        # Do more stuff
+    ;;
+
+    *)
+        # Else
+    ;;
+esac
+```
+
+## Check if string ends with sub-string
+
+**Using a case statement:**
+
+```shell
+case $var in
+    *sub_string)
+        # Do stuff
+    ;;
+
+    *sub_string2)
+        # Do more stuff
+    ;;
+
+    *)
+        # Else
+    ;;
+esac
 ```
