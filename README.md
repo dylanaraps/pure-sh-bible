@@ -17,6 +17,8 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
 - Leanpub book: (*coming soon*)
 - Buy me a coffee: <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/donate-patreon-yellow.svg"> </a>
 
+<br>
+
 # Table of Contents
 
 <!-- vim-markdown-toc GFM -->
