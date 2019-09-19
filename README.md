@@ -80,6 +80,9 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Get the current working directory](#get-the-current-working-directory)
     * [Get the PID of the current shell](#get-the-pid-of-the-current-shell)
     * [Get the current shell options](#get-the-current-shell-options)
+* [SHELL QUIRKS](#shell-quirks)
+    * [`shift` with no function arguments crashes `dash`.](#shift-with-no-function-arguments-crashes-dash)
+    * [`read` with no given variable crashes `dash`.](#read-with-no-given-variable-crashes-dash)
 * [AFTERWORD](#afterword)
 
 <!-- vim-markdown-toc -->
@@ -856,6 +859,31 @@ This is an alternative to the `pwd` built-in.
 
 ```
 "$-"
+```
+
+# SHELL QUIRKS
+
+## `shift` with no function arguments crashes `dash`.
+
+```shell
+# This will crash `dash` if there are no arguments.
+shift
+
+# Solution (shift on its own is really 'shift 1').
+# This uses 'shift 0' if there are no arguments and
+# 'shift 1' if there are.
+shift "$(($# > 0 ? 1 : 0))"
+```
+
+## `read` with no given variable crashes `dash`.
+
+```shell
+# This will crash `dash`.
+read -r
+
+# Solution.
+# Use a dummy variable.
+read -r _
 ```
 
 # AFTERWORD
