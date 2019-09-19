@@ -16,6 +16,7 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [Check if string ends with sub-string](#check-if-string-ends-with-sub-string)
 * [FILES](#files)
     * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
+    * [Get the number of lines in a file](#get-the-number-of-lines-in-a-file)
 
 <!-- vim-markdown-toc -->
 
@@ -176,4 +177,31 @@ PS1='➜ '
 
 $ head 1 ~/.bashrc
 # Prompt
+```
+
+## Get the number of lines in a file
+
+Alternative to `wc -l`.
+
+**Example Function:**
+
+```sh
+lines() {
+    # Usage: lines "file"
+    while read -r _; do
+        lines=$((lines+1))
+    done < "$1"
+
+    printf '%s\n' "$lines"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ lines ~/.bashrc
+48
+
+$ lines_loop ~/.bashrc
+48
 ```
