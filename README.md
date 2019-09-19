@@ -16,6 +16,7 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
     * [Check if string contains a sub-string](#check-if-string-contains-a-sub-string)
     * [Check if string starts with sub-string](#check-if-string-starts-with-sub-string)
     * [Check if string ends with sub-string](#check-if-string-ends-with-sub-string)
+    * [Split a string on a delimiter](#split-a-string-on-a-delimiter)
 * [FILES](#files)
     * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
     * [Get the number of lines in a file](#get-the-number-of-lines-in-a-file)
@@ -214,6 +215,55 @@ case $var in
         # Else
     ;;
 esac
+```
+
+## Split a string on a delimiter
+
+This is an alternative to `cut`, `awk` and other tools.
+
+**Example Function:**
+
+```sh
+split() {
+    # Disable globbing.
+    # This ensures that the word-splitting is safe.
+    set -f
+
+    # Change the field separator to what we're
+    # splitting on.
+    IFS=$2
+
+    # Create an argument list splitting at each
+    # occurance of '$2'.
+    #
+    # This is safe to disable as it just warns against
+    # word-splitting which is the behavior we expect.
+    # shellcheck disable=2086
+    set -- $1
+
+    # Print each list value on its own line.
+    printf '%s\n' "$@"
+
+    # Re-enable globbing.
+    set +f
+}
+```
+
+**Example Usage:**
+
+```shell
+$ split "apples,oranges,pears,grapes" ","
+apples
+oranges
+pears
+grapes
+
+$ split "1, 2, 3, 4, 5" ", "
+1
+2
+3
+4
+5
 ```
 
 # FILES
