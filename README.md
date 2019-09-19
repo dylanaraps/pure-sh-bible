@@ -582,49 +582,49 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 
 | Sequence | What does it do? | Value |
 | -------- | ---------------- | ----- |
-| `\e[38;5;<NUM>m` | Set text foreground color. | `0-255`
-| `\e[48;5;<NUM>m` | Set text background color. | `0-255`
-| `\e[38;2;<R>;<G>;<B>m` | Set text foreground color to RGB color. | `R`, `G`, `B`
-| `\e[48;2;<R>;<G>;<B>m` | Set text background color to RGB color. | `R`, `G`, `B`
+| `\033[38;5;<NUM>m` | Set text foreground color. | `0-255`
+| `\033[48;5;<NUM>m` | Set text background color. | `0-255`
+| `\033[38;2;<R>;<G>;<B>m` | Set text foreground color to RGB color. | `R`, `G`, `B`
+| `\033[48;2;<R>;<G>;<B>m` | Set text background color to RGB color. | `R`, `G`, `B`
 
 ## Text Attributes
 
 | Sequence | What does it do? |
 | -------- | ---------------- |
-| `\e[m`  | Reset text formatting and colors.
-| `\e[1m` | Bold text. |
-| `\e[2m` | Faint text. |
-| `\e[3m` | Italic text. |
-| `\e[4m` | Underline text. |
-| `\e[5m` | Slow blink. |
-| `\e[7m` | Swap foreground and background colors. |
+| `\033[m`  | Reset text formatting and colors.
+| `\033[1m` | Bold text. |
+| `\033[2m` | Faint text. |
+| `\033[3m` | Italic text. |
+| `\033[4m` | Underline text. |
+| `\033[5m` | Slow blink. |
+| `\033[7m` | Swap foreground and background colors. |
 
 
 ## Cursor Movement
 
 | Sequence | What does it do? | Value |
 | -------- | ---------------- | ----- |
-| `\e[<LINE>;<COLUMN>H` | Move cursor to absolute position. | `line`, `column`
-| `\e[H` | Move cursor to home position (`0,0`). |
-| `\e[<NUM>A` | Move cursor up N lines. | `num`
-| `\e[<NUM>B` | Move cursor down N lines. | `num`
-| `\e[<NUM>C` | Move cursor right N columns. | `num`
-| `\e[<NUM>D` | Move cursor left N columns. | `num`
-| `\e[s` | Save cursor position. |
-| `\e[u` | Restore cursor position. |
+| `\033[<LINE>;<COLUMN>H` | Move cursor to absolute position. | `line`, `column`
+| `\033[H` | Move cursor to home position (`0,0`). |
+| `\033[<NUM>A` | Move cursor up N lines. | `num`
+| `\033[<NUM>B` | Move cursor down N lines. | `num`
+| `\033[<NUM>C` | Move cursor right N columns. | `num`
+| `\033[<NUM>D` | Move cursor left N columns. | `num`
+| `\033[s` | Save cursor position. |
+| `\033[u` | Restore cursor position. |
 
 
 ## Erasing Text
 
 | Sequence | What does it do? |
 | -------- | ---------------- |
-| `\e[K` | Erase from cursor position to end of line.
-| `\e[1K` | Erase from cursor position to start of line.
-| `\e[2K` | Erase the entire current line.
-| `\e[J` | Erase from the current line to the bottom of the screen.
-| `\e[1J` | Erase from the current line to the top of the screen.
-| `\e[2J` | Clear the screen.
-| `\e[2J\e[H` | Clear the screen and move cursor to `0,0`.
+| `\033[K` | Erase from cursor position to end of line.
+| `\033[1K` | Erase from cursor position to start of line.
+| `\033[2K` | Erase the entire current line.
+| `\033[J` | Erase from the current line to the bottom of the screen.
+| `\033[1J` | Erase from the current line to the top of the screen.
+| `\033[2J` | Clear the screen.
+| `\033[2J\033[H` | Clear the screen and move cursor to `0,0`.
 
 
 # PARAMETER EXPANSION
@@ -781,7 +781,7 @@ Traps should be added near the start of scripts so any early errors are also cau
 
 ```shell
 # Clear screen on script exit.
-trap 'printf \\e[2J\\e[H\\e[m' EXIT
+trap 'printf \\033[2J\\033[H\\033[m' EXIT
 
 # Run a function on script exit.
 # 'clean_up' is the name of a function.
