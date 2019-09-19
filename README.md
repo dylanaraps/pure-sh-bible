@@ -51,6 +51,11 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [Ignore terminal interrupt (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
 * [OBSOLETE SYNTAX](#obsolete-syntax)
     * [Command Substitution](#command-substitution)
+* [INTERNAL AND ENVIRONMENT VARIABLES](#internal-and-environment-variables)
+    * [Open the user's preferred text editor](#open-the-users-preferred-text-editor)
+    * [Get the current working directory](#get-the-current-working-directory)
+    * [Get the PID of the current shell](#get-the-pid-of-the-current-shell)
+    * [Get the current shell options](#get-the-current-shell-options)
 
 <!-- vim-markdown-toc -->
 
@@ -564,4 +569,35 @@ var=`command`
 
 # $() can easily be nested whereas `` cannot.
 var="$(command "$(command)")"
+```
+
+# INTERNAL AND ENVIRONMENT VARIABLES
+
+## Open the user's preferred text editor
+
+```shell
+"$EDITOR" "$file"
+
+# NOTE: This variable may be empty, set a fallback value.
+"${EDITOR:-vi}" "$file"
+```
+
+## Get the current working directory
+
+This is an alternative to the `pwd` built-in.
+
+```shell
+"$PWD"
+```
+
+## Get the PID of the current shell
+
+```
+"$$"
+```
+
+## Get the current shell options
+
+```
+"$-"
 ```
