@@ -15,7 +15,7 @@ The snippets below are all linted using `shellcheck`.
 See something incorrectly described, buggy or outright wrong? Open an issue or send a pull request. If the bible is missing something, open an issue and a solution will be found.
 
 - Leanpub book: (*coming soon*)
-- Buy me a coffee: <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/don-patreon-yellow.svg"> </a>
+- Buy me a coffee: <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/donate-patreon-yellow.svg"> </a>
 
 # Table of Contents
 
