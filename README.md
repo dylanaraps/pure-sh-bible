@@ -485,7 +485,15 @@ Alternative to the `dirname` command.
 ```sh
 dirname() {
     # Usage: dirname "path"
-    printf '%s\n' "${1%/*}/"
+    dir=${1%%/}
+
+    # If there are no '/' in the path, use '.'.
+    case $dir in
+        */*) ;;
+        *) dir=.
+    esac
+
+    printf '%s\n' "${dir%/*}"
 }
 ```
 
