@@ -14,6 +14,8 @@ A collection of pure POSIX `sh` alternatives to external processes
     * [Check if string contains a sub-string](#check-if-string-contains-a-sub-string)
     * [Check if string starts with sub-string](#check-if-string-starts-with-sub-string)
     * [Check if string ends with sub-string](#check-if-string-ends-with-sub-string)
+* [FILES](#files)
+    * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
 
 <!-- vim-markdown-toc -->
 
@@ -144,4 +146,34 @@ case $var in
         # Else
     ;;
 esac
+```
+
+# FILES
+
+## Get the first N lines of a file
+
+Alternative to the `head` command.
+
+**Example Function:**
+
+```sh
+head() {
+    # Usage: head "n" "file"
+    while read -r line; do
+        [ "$i" = "$1" ] && break
+        printf '%s\n' "$line"
+        i=$((i+1))
+    done < "$2"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ head 2 ~/.bashrc
+# Prompt
+PS1='➜ '
+
+$ head 1 ~/.bashrc
+# Prompt
 ```
