@@ -19,6 +19,7 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
     * [Split a string on a delimiter](#split-a-string-on-a-delimiter)
     * [Trim quotes from a string](#trim-quotes-from-a-string)
 * [FILES](#files)
+    * [Parsing a `key=val` file.](#parsing-a-keyval-file)
     * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
     * [Get the number of lines in a file](#get-the-number-of-lines-in-a-file)
     * [Count files or directories in directory](#count-files-or-directories-in-directory)
@@ -330,6 +331,21 @@ Hello, World
 ```
 
 # FILES
+
+## Parsing a `key=val` file.
+
+```shell
+# Setting 'IFS' tells 'read' where to split the string.
+while IFS='=' read -r key val; do
+    # Skip over lines containing comments.
+    # (Lines starting with '#').
+    [ "${key##\#*}" ] || continue
+
+    # '$key' stores the key.
+    # '$val' stores the value.
+    printf '%s: %s\n' "$key" "$val"
+done < "file"
+```
 
 ## Get the first N lines of a file
 
