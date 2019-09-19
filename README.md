@@ -15,8 +15,8 @@ The snippets below are all linted using `shellcheck`.
 See something incorrectly described, buggy or outright wrong? Open an issue or send a pull request. If the bible is missing something, open an issue and a solution will be found.
 
 <br>
-<p align="center"><b>Leanpub book (coming soon)</b></p>
-<p align="center"><b>Or you can buy me a coffee.</b>
+<p><b>Leanpub book (coming soon)</b></p>
+<p><b>Or you can buy me a coffee.</b>
 <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/don-patreon-yellow.svg"> </a>
 </p>
 
