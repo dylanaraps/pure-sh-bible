@@ -65,6 +65,7 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
     * [Get the current working directory](#get-the-current-working-directory)
     * [Get the PID of the current shell](#get-the-pid-of-the-current-shell)
     * [Get the current shell options](#get-the-current-shell-options)
+* [AFTERWORD](#afterword)
 
 <!-- vim-markdown-toc -->
 
@@ -841,3 +842,12 @@ This is an alternative to the `pwd` built-in.
 ```
 "$-"
 ```
+
+# AFTERWORD
+
+Thanks for reading! If this bible helped you in any way and you'd like to give back, consider donating. Donations give me the time to make this the best resource possible. Can't donate? That's OK, star the repo and share it with your friends!
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7QNJNKS3WYVS"><img src="https://img.shields.io/badge/donate-paypal-yellow.svg"></a> <a href="https://www.patreon.com/dyla"><img src="https://img.shields.io/badge/donate-patreon-yellow.svg"> </a><a href="https://liberapay.com/2211/"><img src="https://img.shields.io/badge/donate-liberapay-yellow.svg"></a>
+
+
+Rock on. 🤘
