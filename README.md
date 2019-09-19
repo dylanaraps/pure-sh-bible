@@ -6,8 +6,12 @@
 <h1 align="center">pure sh bible</h1> <p
 align="center">A collection of pure POSIX sh alternatives to external processes.</p><br><br>
 
-**NOTE**: If anything seen here is **not** POSIX `sh`, open an issue. This is a living document that is open to change and improvement.
 
+The goal of this book is to document commonly-known and lesser-known methods of doing various tasks using only built-in POSIX `sh` features. Using the snippets from this bible can help remove unneeded dependencies from scripts and in most cases make them faster. I came across these tips and discovered a few while developing [KISS Linux](https://getkiss.org) and other smaller projects.
+
+The snippets below are all linted using `shellcheck`.
+
+See something incorrectly described, buggy or outright wrong? Open an issue or send a pull request. If the bible is missing something, open an issue and a solution will be found.
 
 # Table of Contents
 
