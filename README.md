@@ -71,6 +71,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
 * [ARITHMETIC](#arithmetic-1)
     * [Ternary Tests](#ternary-tests)
     * [Check if a number is a float](#check-if-a-number-is-a-float)
+    * [Check if a number is an integer](#check-if-a-number-is-an-integer)
 * [TRAPS](#traps)
     * [Do something on script exit](#do-something-on-script-exit)
     * [Ignore terminal interrupt (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
@@ -817,15 +818,30 @@ is_float() {
 
     return 1
 }
+
+```
+
+## Check if a number is an integer
+
+**Example Function:**
+
+```sh
+is_int() {
+    # usage: is_int "number"
+    case $1 in
+        *[!-0-9]*|'') return 1 ;;
+        *[0-9]*)
+    esac
+}
 ```
 
 **Example Usage:**
 
 ```shell
-$ is_float 1.1 && echo true
-true
+$ is_int 1 && echo true
+$ true
 
-$ is_float 1 && echo true
+$ is_int 1.1 && echo true
 $
 ```
 
