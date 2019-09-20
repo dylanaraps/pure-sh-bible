@@ -439,6 +439,8 @@ $ lines ~/.bashrc
 
 This works by passing the output of the glob to the function and then counting the number of arguments.
 
+**CAVEAT:** When the glob does not match anything (empty directory or no matching files) it is not expanded and the function returns `1`.
+
 **Example Function:**
 
 ```sh
@@ -574,6 +576,8 @@ done < "file"
 ## Loop over files and directories
 
 Don’t use `ls`.
+
+**CAVEAT:** When the glob does not match anything (empty directory or no matching files) the variable will contain the unexpanded glob.
 
 ```shell
 # Greedy example.
