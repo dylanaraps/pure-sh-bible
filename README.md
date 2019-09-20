@@ -70,6 +70,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Miscellaneous](#miscellaneous)
 * [ARITHMETIC](#arithmetic-1)
     * [Ternary Tests](#ternary-tests)
+    * [Check if a number is a float](#check-if-a-number-is-a-float)
 * [TRAPS](#traps)
     * [Do something on script exit](#do-something-on-script-exit)
     * [Ignore terminal interrupt (CTRL+C, SIGINT)](#ignore-terminal-interrupt-ctrlc-sigint)
@@ -800,6 +801,32 @@ For use in `[ ]` `if [ ]; then` and `test`.
 # '? var2': If the test succeeds.
 # ': var': If the test fails.
 var=$((var2 > var ? var2 : var))
+```
+
+## Check if a number is a float
+
+**Example Function:**
+
+```sh
+is_float() {
+    # Usage: is_float "number"
+    case $1 in
+        *.*.*|*[!-.0-9]*) ;;
+        *[0-9].[0-9]*) return 0
+    esac
+
+    return 1
+}
+```
+
+**Example Usage:**
+
+```shell
+$ is_float 1.1 && echo true
+true
+
+$ is_float 1 && echo true
+$
 ```
 
 # TRAPS
