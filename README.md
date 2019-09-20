@@ -577,21 +577,24 @@ done < "file"
 
 Don’t use `ls`.
 
-**CAVEAT:** When the glob does not match anything (empty directory or no matching files) the variable will contain the unexpanded glob.
+**CAVEAT:** When the glob does not match anything (empty directory or no matching files) the variable will contain the unexpanded glob. To avoid working on unexpanded globs check the existence of the file contained in the variable using the appropriate [file conditional](#file-conditionals). Be aware that symbolic links are resolved.
 
 ```shell
 # Greedy example.
 for file in *; do
+    [ -e "$file" ] || [ -L "$file" ] || continue
     printf '%s\n' "$file"
 done
 
 # PNG files in dir.
 for file in ~/Pictures/*.png; do
+    [ -f "$file" ] || continue
     printf '%s\n' "$file"
 done
 
 # Iterate over directories.
 for dir in ~/Downloads/*/; do
+    [ -d "$dir" ] || continue
     printf '%s\n' "$dir"
 done
 ```
