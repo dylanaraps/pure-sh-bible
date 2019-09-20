@@ -193,12 +193,12 @@ John Black is my name.
 
 ```shell
 case $var in
-    *sub_string*)
+    *sub_string1*)
         # Do stuff
     ;;
 
     *sub_string2*)
-        # Do more stuff
+        # Do other stuff
     ;;
 
     *)
@@ -213,12 +213,12 @@ esac
 
 ```shell
 case $var in
-    sub_string*)
+    sub_string1*)
         # Do stuff
     ;;
 
     sub_string2*)
-        # Do more stuff
+        # Do other stuff
     ;;
 
     *)
@@ -233,12 +233,12 @@ esac
 
 ```shell
 case $var in
-    *sub_string)
+    *sub_string1)
         # Do stuff
     ;;
 
     *sub_string2)
-        # Do more stuff
+        # Do other stuff
     ;;
 
     *)
