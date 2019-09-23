@@ -397,6 +397,7 @@ head() {
         i=$((i+1))
         [ "$i" = "$1" ] && return
     done < "$2"
+
     [ -n "$line" ] && printf %s "$line"
 }
 ```
