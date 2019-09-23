@@ -393,10 +393,11 @@ Alternative to the `head` command.
 head() {
     # Usage: head "n" "file"
     while read -r line; do
-        [ "$i" = "$1" ] && break
         printf '%s\n' "$line"
         i=$((i+1))
+        [ "$i" = "$1" ] && return
     done < "$2"
+    [ -n "$line" ] && printf %s "$line"
 }
 ```
 
@@ -420,7 +421,7 @@ Alternative to `wc -l`.
 ```sh
 lines() {
     # Usage: lines "file"
-    while read -r _; do
+    while read -r line || [ -n "$line" ]; do
         lines=$((lines+1))
     done < "$1"
 
@@ -568,7 +569,7 @@ done
 ## Loop over the contents of a file
 
 ```shell
-while read -r line; do
+while read -r line || [ -n "$line" ]; do
     printf '%s\n' "$line"
 done < "file"
 ```
