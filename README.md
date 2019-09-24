@@ -895,8 +895,9 @@ var=$((var2 > var ? var2 : var))
 **Example Function:**
 
 ```sh
-# Usage: is_float "number"
 is_float() {
+    # Usage: is_float "number"
+
     # The test checks to see that the input contains
     # a '.'. This filters out whole numbers.
     [ -z "${1##*.*}" ] &&
