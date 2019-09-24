@@ -211,12 +211,12 @@ John Black is my name.
 
 ```shell
 case $var in
-    *sub_string*)
+    *sub_string1*)
         # Do stuff
     ;;
 
     *sub_string2*)
-        # Do more stuff
+        # Do other stuff
     ;;
 
     *)
@@ -231,12 +231,12 @@ esac
 
 ```shell
 case $var in
-    sub_string*)
+    sub_string1*)
         # Do stuff
     ;;
 
     sub_string2*)
-        # Do more stuff
+        # Do other stuff
     ;;
 
     *)
@@ -251,12 +251,12 @@ esac
 
 ```shell
 case $var in
-    *sub_string)
+    *sub_string1)
         # Do stuff
     ;;
 
     *sub_string2)
-        # Do more stuff
+        # Do other stuff
     ;;
 
     *)
@@ -411,10 +411,12 @@ Alternative to the `head` command.
 head() {
     # Usage: head "n" "file"
     while read -r line; do
-        [ "$i" = "$1" ] && break
         printf '%s\n' "$line"
         i=$((i+1))
+        [ "$i" = "$1" ] && return
     done < "$2"
+
+    [ -n "$line" ] && printf %s "$line"
 }
 ```
 
@@ -438,7 +440,7 @@ Alternative to `wc -l`.
 ```sh
 lines() {
     # Usage: lines "file"
-    while read -r _; do
+    while read -r line || [ -n "$line" ]; do
         lines=$((lines+1))
     done < "$1"
 
@@ -456,6 +458,8 @@ $ lines ~/.bashrc
 ## Count files or directories in directory
 
 This works by passing the output of the glob to the function and then counting the number of arguments.
+
+**CAVEAT:** When the glob does not match anything (empty directory or no matching files) it is not expanded and the function returns `1`.
 
 **Example Function:**
 
@@ -584,7 +588,7 @@ done
 ## Loop over the contents of a file
 
 ```shell
-while read -r line; do
+while read -r line || [ -n "$line" ]; do
     printf '%s\n' "$line"
 done < "file"
 ```
@@ -593,19 +597,24 @@ done < "file"
 
 Don’t use `ls`.
 
+**CAVEAT:** When the glob does not match anything (empty directory or no matching files) the variable will contain the unexpanded glob. To avoid working on unexpanded globs check the existence of the file contained in the variable using the appropriate [file conditional](#file-conditionals). Be aware that symbolic links are resolved.
+
 ```shell
 # Greedy example.
 for file in *; do
+    [ -e "$file" ] || [ -L "$file" ] || continue
     printf '%s\n' "$file"
 done
 
 # PNG files in dir.
 for file in ~/Pictures/*.png; do
+    [ -f "$file" ] || continue
     printf '%s\n' "$file"
 done
 
 # Iterate over directories.
 for dir in ~/Downloads/*/; do
+    [ -d "$dir" ] || continue
     printf '%s\n' "$dir"
 done
 ```
