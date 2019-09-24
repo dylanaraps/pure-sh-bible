@@ -820,12 +820,7 @@ var=$((var2 > var ? var2 : var))
 ```sh
 is_float() {
     # Usage: is_float "number"
-    case $1 in
-        *.*.*|*[!-.0-9]*) ;;
-        *[0-9].[0-9]*) return 0
-    esac
-
-    return 1
+    [ -n "$1" -a "$1" = "${1## }" ] && printf %f "$1" >/dev/null 2>&1
 }
 
 ```
@@ -837,10 +832,7 @@ is_float() {
 ```sh
 is_int() {
     # usage: is_int "number"
-    case $1 in
-        *[!-0-9]*|'') return 1 ;;
-        *[0-9]*)
-    esac
+    [ -n "$1" -a "$1" = "${1## }" ] && printf %d "$1" >/dev/null 2>&
 }
 ```
 
