@@ -895,16 +895,23 @@ var=$((var2 > var ? var2 : var))
 **Example Function:**
 
 ```sh
+# Usage: is_float "number"
 is_float() {
-    # Usage: is_float "number"
-    case $1 in
-        *.*.*|*[!-.0-9]*) ;;
-        *[0-9].[0-9]*) return 0
-    esac
-
-    return 1
+    # The test checks to see that the input contains
+    # a '.'. This filters out whole numbers.
+    [ -z "${1##*.*}" ] &&
+        printf %f "$1" >/dev/null 2>&1
 }
+```
 
+**Example Usage:**
+
+```shell
+$ is_float 1 && echo true
+$
+
+$ is_float 1.1 && echo true
+$ true
 ```
 
 ## Check if a number is an integer
@@ -914,10 +921,7 @@ is_float() {
 ```sh
 is_int() {
     # usage: is_int "number"
-    case $1 in
-        *[!-0-9]*|'') return 1 ;;
-        *[0-9]*)
-    esac
+    printf %d "$1" >/dev/null 2>&1
 }
 ```
 
