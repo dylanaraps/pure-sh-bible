@@ -416,6 +416,16 @@ head() {
         [ "$i" = "$1" ] && return
     done < "$2"
 
+    # 'read' used in a loop will skip over
+    # the last line of a file if it does not contain
+    # a newline and instead contains EOF.
+    #
+    # The final line iteration is skipped as 'read'
+    # exits with '1' when it hits EOF. 'read' however,
+    # still populates the variable.
+    #
+    # This ensures that the final line is always printed
+    # if applicable.
     [ -n "$line" ] && printf %s "$line"
 }
 ```
@@ -440,6 +450,14 @@ Alternative to `wc -l`.
 ```sh
 lines() {
     # Usage: lines "file"
+
+    # '|| [ -n "$line" ]': This ensures that lines
+    # ending with EOL instead of a newline are still
+    # operated on in the loop.
+    #
+    # 'read' exits with '1' when it sees EOL and
+    # without the added test, the line isn't sent
+    # to the loop.
     while read -r line || [ -n "$line" ]; do
         lines=$((lines+1))
     done < "$1"
