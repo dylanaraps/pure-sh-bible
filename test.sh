@@ -17,7 +17,8 @@ main() {
         esac
     done < README.md > readme_code
 
-    # Run shellcheck and source the code.
+    # Run shellcheck on the extracted code blocks
+    # and this test script itself.
     shellcheck -s sh readme_code test.sh || exit 1
 }
 
