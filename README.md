@@ -410,11 +410,16 @@ Alternative to the `head` command.
 ```sh
 head() {
     # Usage: head "n" "file"
+    OLDIFS="$IFS"
+    # `read` strips leading and trailing spaces, tabs, and newlines
+    # if IFS contains any of them, so clear out IFS
+    IFS=
     while read -r line; do
         printf '%s\n' "$line"
         i=$((i+1))
         [ "$i" = "$1" ] && return
     done < "$2"
+    IFS="$OLDIFS"
 
     # 'read' used in a loop will skip over
     # the last line of a file if it does not contain
@@ -647,9 +652,11 @@ done
 ## Loop over the contents of a file
 
 ```shell
+OLDIFS="$IFS"; IFS=
 while read -r line || [ -n "$line" ]; do
     printf '%s\n' "$line"
 done < "file"
+IFS="$OLDIFS"
 ```
 
 ## Loop over files and directories
