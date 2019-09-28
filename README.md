@@ -410,7 +410,7 @@ Alternative to the `head` command.
 ```sh
 head() {
     # Usage: head "n" "file"
-    while read -r line; do
+    while IFS= read -r line; do
         printf '%s\n' "$line"
         i=$((i+1))
         [ "$i" = "$1" ] && return
@@ -458,7 +458,7 @@ lines() {
     # 'read' exits with '1' when it sees EOL and
     # without the added test, the line isn't sent
     # to the loop.
-    while read -r line || [ -n "$line" ]; do
+    while IFS= read -r line || [ -n "$line" ]; do
         lines=$((lines+1))
     done < "$1"
 
@@ -647,7 +647,7 @@ done
 ## Loop over the contents of a file
 
 ```shell
-while read -r line || [ -n "$line" ]; do
+while IFS= read -r line || [ -n "$line" ]; do
     printf '%s\n' "$line"
 done < "file"
 ```
