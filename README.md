@@ -178,8 +178,12 @@ without leading/trailing white-space and with truncated spaces.
 trim_all() {
     # Usage: trim_all "   example   string    "
 
-    # Disable globbing to make the word-splitting below safe.
-    set -f
+    # Save and disable the globbing state to make the word-splitting
+    # below safe.
+    case $- in
+        *f*) DIDGLOB=false;         ;;
+        *)   DIDGLOB=true;  set -f; ;;
+    esac
 
     # Set the argument list to the word-splitted string.
     # This removes all leading/trailing white-space and reduces
@@ -189,8 +193,8 @@ trim_all() {
     # Print the argument list as a string.
     printf '%s\n' "$*"
 
-    # Re-enable globbing.
-    set +f
+    # Re-set globbing to it's previous condition
+    $DIDGLOB && set +f
 }
 ```
 
@@ -273,9 +277,12 @@ This is an alternative to `cut`, `awk` and other tools.
 
 ```sh
 split() {
-    # Disable globbing.
-    # This ensures that the word-splitting is safe.
-    set -f
+    # Save and disable the globbing state to make the word-splitting
+    # below safe.
+    case $- in
+        *f*) DIDGLOB=false;         ;;
+        *)   DIDGLOB=true;  set -f; ;;
+    esac
 
     # Store the current value of 'IFS' so we
     # can restore it later.
@@ -299,9 +306,8 @@ split() {
     # Restore the value of 'IFS'.
     IFS=$old_ifs
 
-    # Re-enable globbing.
-    set +f
-}
+    # Re-set globbing to it's previous condition
+    $DIDGLOB && set +f
 ```
 
 **Example Usage:**
@@ -329,9 +335,12 @@ $ split "1, 2, 3, 4, 5" ", "
 trim_quotes() {
     # Usage: trim_quotes "string"
 
-    # Disable globbing.
-    # This makes the word-splitting below safe.
-    set -f
+    # Save and disable the globbing state to make the word-splitting
+    # below safe.
+    case $- in
+        *f*) DIDGLOB=false;         ;;
+        *)   DIDGLOB=true;  set -f; ;;
+    esac
 
     # Store the current value of 'IFS' so we
     # can restore it later.
@@ -358,8 +367,8 @@ trim_quotes() {
     # Restore the value of 'IFS'.
     IFS=$old_ifs
 
-    # Re-enable globbing.
-    set +f
+    # Re-set globbing to it's previous condition
+    $DIDGLOB && set +f
 }
 ```
 
