@@ -1018,7 +1018,7 @@ shift
 # Solution (shift on its own is really 'shift 1').
 # This uses 'shift 0' if there are no arguments and
 # 'shift 1' if there are.
-shift "$(($# > 0 ? 1 : 0))"
+shift "$(($# ? 1 : 0))"
 ```
 
 ## `read` with no given variable crashes `dash`.
