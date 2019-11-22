@@ -458,6 +458,7 @@ lines() {
     # 'read' exits with '1' when it sees EOL and
     # without the added test, the line isn't sent
     # to the loop.
+    lines=0
     while IFS= read -r line || [ -n "$line" ]; do
         lines=$((lines+1))
     done < "$1"
