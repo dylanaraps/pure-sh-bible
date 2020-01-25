@@ -839,7 +839,6 @@ For use in `[ ]` `if [ ]; then` and `test`.
 | `-` | Subtraction
 | `*` | Multiplication
 | `/` | Division
-| `**` | Exponentiation
 | `%` | Modulo
 | `+=` | Plus-Equal (*Increment a variable.*)
 | `-=` | Minus-Equal (*Decrement a variable.*)
