@@ -475,35 +475,54 @@ $ lines ~/.bashrc
 
 ## Count files or directories in directory
 
-This works by passing the output of the glob to the function and then counting the number of arguments.
+This iterates over every item in the glob argument/* and tallies them if they exist.
 
-**CAVEAT:** When the glob does not match anything (empty directory or no matching files) it is not expanded and the function returns `1`.
 
 **Example Function:**
 
 ```sh
 count() {
-    # Usage: count /path/to/dir/*
-    #        count /path/to/dir/*/
-    printf '%s\n' "$#"
+	# Usage: count /Example/Dir
+
+	# Returns either number of files/directories found under /Example/Dir
+	# or '-1' if /Example/Dir is not a directory.
+
+	# Test if /Example/Dir actually exists and is a directory.
+	# Return -1 if not an existing directory.
+	[ -d "$1" ] || { printf '%d\n' -1 ; exit ; }
+
+	i=0
+
+	# "${1%/}/" Handles both /Example/Dir and /Example/Dir/
+	# Generates all items in expansion of /Example/Dir/* and
+	# iterates over them in for loop.
+
+	for f in "${1%/}/"*
+		do
+
+		# Because "${1%/}/"* is expanded to literal '/Example/Dir/*' when
+		# no match for * is found, we have to test for its existence
+		# before tallying it.
+		#
+		# By changing -e to -{f,d,...} you
+		# can count only {files,directories,...} or combine
+		# tests with '||' to count combinations.
+		[ ! -e "$f" ] && continue
+		i=$(( i + 1 ))
+		done
+		printf '%d\n' $i
 }
+
 ```
 
 **Example Usage:**
 
 ```shell
-# Count all files in dir.
-$ count ~/Downloads/*
+# Count all files and items in dir.
+$ count ~/Downloads/
 232
 
-# Count all dirs in dir.
-$ count ~/Downloads/*/
-45
 
-# Count all jpg files in dir.
-$ count ~/Pictures/*.jpg
-64
-```
 
 ## Create an empty file
 
