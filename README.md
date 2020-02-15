@@ -482,9 +482,9 @@ Using pathname expansion to generate a list of filesystem entries that match a p
 
 ```sh
 count() {
-	# Usage: count [.]/Example/Dir/*   Count all files.
-	#        count [.]/Example/Dir/*/  Count all subdirectories of /Example/Dir
-	#        count [.]/Example/Dir/*.jpg   Count all files ending in .jpg
+	# Usage: count [.]/Example/Dir/*        Count all files.
+	#        count [.]/Example/Dir/*/       Count all subdirectories of /Example/Dir
+	#        count [.]/Example/Dir/*.jpg    Count all files ending in .jpg
 	#        count [.]/Example/Dir/*/*.jpg  Count all subdirectories containing files ending in .jpg
 
 	i=0
