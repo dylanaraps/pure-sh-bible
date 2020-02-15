@@ -475,37 +475,30 @@ $ lines ~/.bashrc
 
 ## Count files or directories in directory
 
-This iterates over every item in the glob argument/* and tallies them if they exist.
+Using pathname expansion to generate a list of filesystem entries that match a pattern and count them. 
 
 
 **Example Function:**
 
 ```sh
 count() {
-	# Usage: count /Example/Dir
-
-	# Returns either number of files/directories found under /Example/Dir
-	# or '-1' if /Example/Dir is not a directory.
-
-	# Test if /Example/Dir actually exists and is a directory.
-	# Return -1 if not an existing directory.
-	[ -d "$1" ] || { printf '%d\n' -1 ; exit ; }
+	# Usage: count [.]/Example/Dir/*   Count all files.
+	#        count [.]/Example/Dir/*/  Count all subdirectories of /Example/Dir
+	#        count [.]/Example/Dir/*.jpg   Count all files ending in .jpg
+	#        count [.]/Example/Dir/*/*.jpg  Count all subdirectories containing files ending in .jpg
 
 	i=0
 
-	# "${1%/}/" Handles both /Example/Dir and /Example/Dir/
-	# Generates all items in expansion of /Example/Dir/* and
-	# iterates over them in for loop.
-
-	for f in "${1%/}/"*
+	# For each expansion of /Example/Dir/*, count if it exists in the file system.
+	for f in "$@"
 		do
 
-		# Because "${1%/}/"* is expanded to literal '/Example/Dir/*' when
-		# no match for * is found, we have to test for its existence
-		# before tallying it.
+		# Because "$@" is expanded to literal '/Example/Dir/*' when
+		# no match for * is found, we have to test for the expansions existence
+		# before counting it. This will appropriately count a file named '*' in /Example/Dir.
 		#
-		# By changing -e to -{f,d,...} you
-		# can count only {files,directories,...} or combine
+		# By changing -e to -{f,d,...,} the function
+		# can count only {files,directories,...,} or combine
 		# tests with '||' to count combinations.
 		[ ! -e "$f" ] && continue
 		i=$(( i + 1 ))
@@ -513,16 +506,20 @@ count() {
 		printf '%d\n' $i
 }
 
+
 ```
 
 **Example Usage:**
 
 ```shell
-# Count all files and items in dir.
-$ count ~/Downloads/
+# Count any filesystem entry in ~/Downloads.
+$ count ~/Downloads/*
 232
 
-
+# Count subdirectories of ~/Documents.
+$ count ~/Documents/*/
+4
+```
 
 ## Create an empty file
 
