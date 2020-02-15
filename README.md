@@ -477,15 +477,15 @@ $ lines ~/.bashrc
 
 This works by passing the output of the glob to the function and then counting the number of arguments.
 
-**CAVEAT:** When the glob does not match anything (empty directory or no matching files) it is not expanded and the function returns `1`.
-
 **Example Function:**
 
 ```sh
 count() {
     # Usage: count /path/to/dir/*
     #        count /path/to/dir/*/
-    printf '%s\n' "$#"
+    [ -e "$1" ] \
+        && printf '%s\n' "$#" \
+        || printf '%s\n' 0
 }
 ```
 
