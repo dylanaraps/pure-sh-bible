@@ -912,7 +912,7 @@ $ true
 ```
 
 ## Check if a number is an integer
-
+Note: This does not work in `zsh`, or `zsh` invoked as `sh`, as `printf %d` called with a string in zsh simply prints 0 rather than erroring.
 **Example Function:**
 
 ```sh
