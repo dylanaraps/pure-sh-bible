@@ -677,12 +677,12 @@ done
 
 # VARIABLES
 
-## Name a variable based on another variable
+## Name and access a variable based on another variable
 
 ```shell
 $ var="world"
-$ export "hello_$var=value"
-$ printf '%s\n' "$hello_world"
+$ eval "hello_$var=value"
+$ eval printf '%s\n' "\$hello_$var"
 value
 ```
 
