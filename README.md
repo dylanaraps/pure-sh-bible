@@ -48,7 +48,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
     * [Loop over files and directories](#loop-over-files-and-directories)
 * [VARIABLES](#variables)
-    * [Name a variable based on another variable](#name-a-variable-based-on-another-variable)
+    * [Name and access a variable based on another variable](#name-and-access-a-variable-based-on-another-variable)
 * [ESCAPE SEQUENCES](#escape-sequences)
     * [Text Colors](#text-colors)
     * [Text Attributes](#text-attributes)
@@ -682,7 +682,7 @@ done
 ```shell
 $ var="world"
 $ eval "hello_$var=value"
-$ eval printf '%s\n' "\$hello_$var"
+$ eval printf '%s\\n' "\$hello_$var"
 value
 ```
 
