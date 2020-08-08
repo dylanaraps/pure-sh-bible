@@ -175,6 +175,10 @@ without leading/trailing white-space and with truncated spaces.
 trim_all() {
     # Usage: trim_all "   example   string    "
 
+    # Save the current shell options, so we can
+    # restore them later.
+    options=$-
+
     # Disable globbing to make the word-splitting below safe.
     set -f
 
@@ -186,8 +190,9 @@ trim_all() {
     # Print the argument list as a string.
     printf '%s\n' "$*"
 
-    # Re-enable globbing.
-    set +f
+    # Restore the original shell options.
+    # "${options##*f*}": Empty if '$options' contains 'f'
+    [ -n "${options##*f*}" ] && set +f
 }
 ```
 
@@ -270,6 +275,10 @@ This is an alternative to `cut`, `awk` and other tools.
 
 ```sh
 split() {
+    # Save the current shell options, so we can
+    # restore them later.
+    options=$-
+
     # Disable globbing.
     # This ensures that the word-splitting is safe.
     set -f
@@ -296,8 +305,9 @@ split() {
     # Restore the value of 'IFS'.
     IFS=$old_ifs
 
-    # Re-enable globbing.
-    set +f
+    # Restore the original shell options.
+    # "${options##*f*}": Empty if '$options' contains 'f'
+    [ -n "${options##*f*}" ] && set +f
 }
 ```
 
@@ -325,6 +335,10 @@ $ split "1, 2, 3, 4, 5" ", "
 ```sh
 trim_quotes() {
     # Usage: trim_quotes "string"
+
+    # Save the current shell options, so we can
+    # restore them later.
+    options=$-
 
     # Disable globbing.
     # This makes the word-splitting below safe.
@@ -355,8 +369,9 @@ trim_quotes() {
     # Restore the value of 'IFS'.
     IFS=$old_ifs
 
-    # Re-enable globbing.
-    set +f
+    # Restore the original shell options.
+    # "${options##*f*}": Empty if '$options' contains 'f'
+    [ -n "${options##*f*}" ] && set +f
 }
 ```
 
