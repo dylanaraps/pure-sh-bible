@@ -534,7 +534,7 @@ dirname() {
     # "${dir##*[!/]}": Remove all non-forward-slashes
     # from the start of the string, leaving us with only
     # the trailing slashes.
-    # "${dir%%"${}"}:  Remove the result of the above
+    # "${dir%%"${}"}": Remove the result of the above
     # substitution (a string of forward slashes) from the
     # end of the original string.
     dir=${dir%%"${dir##*[!/]}"}
