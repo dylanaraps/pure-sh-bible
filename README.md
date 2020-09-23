@@ -905,11 +905,13 @@ is_float() {
 **Example Usage:**
 
 ```shell
-$ is_float 1 && echo true
-$
+$ is_float 3 && echo true
 
-$ is_float 1.1 && echo true
-$ true
+$ is_float 3.14 && echo true
+true
+
+$ is_float 314e-2 && echo true
+true
 ```
 
 ## Check if a number is an integer
@@ -927,10 +929,9 @@ is_int() {
 
 ```shell
 $ is_int 1 && echo true
-$ true
+true
 
 $ is_int 1.1 && echo true
-$
 ```
 
 # TRAPS
