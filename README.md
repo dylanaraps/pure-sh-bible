@@ -894,10 +894,11 @@ var=$((var2 > var ? var2 : var))
 is_float() {
     # Usage: is_float "number"
 
-    # The test checks to see that the input contains
-    # a '.'. This filters out whole numbers.
-    [ -z "${1##*.*}" ] &&
-        printf %f "$1" >/dev/null 2>&1
+    # Printing as '%d' must fail in order to filter out whole numbers;
+    # then printing as '%f' will succeed if and only if '$1' is a float.
+    # This works for both decimal point form (i.g. 3.14) and standard form
+    # (e.g. 314e-2).
+    { ! printf %d "$1" && printf %f "$1" ; } >/dev/null 2>&1
 }
 ```
 
