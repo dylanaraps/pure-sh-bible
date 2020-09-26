@@ -82,6 +82,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Get the current working directory](#get-the-current-working-directory)
     * [Get the PID of the current shell](#get-the-pid-of-the-current-shell)
     * [Get the current shell options](#get-the-current-shell-options)
+    * [Check if input is from a terminal](#check-if-input-is-from-a-terminal)
     * [Check if output is to a terminal](#check-if-output-is-to-a-terminal)
 * [AFTERWORD](#afterword)
 
@@ -1002,6 +1003,32 @@ This is an alternative to the `pwd` built-in.
 
 ```
 "$-"
+```
+
+## Check if input is from a terminal
+
+You can test whether file descriptor 0 (i.e. standard input) is open
+on a terminal using `[ -t 0 ]`. This test fails if input is
+redirected from a file (`<file`) or a pipe (`cmd|`).
+
+```shell
+if [ -t 0 ]; then
+    echo terminal
+else
+    echo not a terminal
+fi
+```
+
+**Example usage:**
+
+```shell
+if [ -t 0 ]; then
+    printf "What's your name?\n"
+    read name
+    printf 'Hello, %s.\n' "$name"
+else
+    printf 'No terminal to read from.\n'
+fi
 ```
 
 ## Check if output is to a terminal
