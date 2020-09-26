@@ -82,6 +82,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Get the current working directory](#get-the-current-working-directory)
     * [Get the PID of the current shell](#get-the-pid-of-the-current-shell)
     * [Get the current shell options](#get-the-current-shell-options)
+    * [Check if output is to a terminal](#check-if-output-is-to-a-terminal)
 * [AFTERWORD](#afterword)
 
 <!-- vim-markdown-toc -->
@@ -1001,6 +1002,29 @@ This is an alternative to the `pwd` built-in.
 
 ```
 "$-"
+```
+
+## Check if output is to a terminal
+
+You can test whether file descriptor 1 (i.e. standard output) is open
+on a terminal using `[ -t 1 ]`. This test fails if output is
+redirected to a file (`>file`) or a pipe (`|cmd`).
+
+```shell
+if [ -t 1 ]; then
+    echo terminal
+else
+    echo not a terminal
+fi
+```
+
+**Example usage:**
+
+```shell
+# show output in color when called interactively
+[ -t 1 ] && printf '\033[38;5;1m'
+echo hey
+[ -t 1 ] && printf '\033[m'
 ```
 
 # AFTERWORD
