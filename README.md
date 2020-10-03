@@ -1007,6 +1007,9 @@ This is an alternative to the `pwd` built-in.
 
 ## Check if input is from a terminal
 
+This is an alternative to `tty` when you don't necessarily need to know
+the terminal file name, just whether it is a terminal at all.
+
 You can test whether file descriptor 0 (i.e. standard input) is open
 on a terminal using `[ -t 0 ]`. This test fails if input is
 redirected from a file (`<file`) or a pipe (`cmd|`).
@@ -1032,6 +1035,9 @@ fi
 ```
 
 ## Check if output is to a terminal
+
+This is an alternative to `tty` when you don't necessarily need to know
+the terminal file name, just whether it is a terminal at all.
 
 You can test whether file descriptor 1 (i.e. standard output) is open
 on a terminal using `[ -t 1 ]`. This test fails if output is
