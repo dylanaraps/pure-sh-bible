@@ -1036,9 +1036,6 @@ fi
 
 ## Check if output is to a terminal
 
-This is an alternative to `tty` when you don't necessarily need to know
-the terminal file name, just whether it is a terminal at all.
-
 You can test whether file descriptor 1 (i.e. standard output) is open
 on a terminal using `[ -t 1 ]`. This test fails if output is
 redirected to a file (`>file`) or a pipe (`|cmd`).
