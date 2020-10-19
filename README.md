@@ -171,8 +171,10 @@ without leading/trailing white-space and with truncated spaces.
 **Example Function:**
 
 ```sh
+# Run function as a subshell (note the parenthesis)
+# To prevent overriding outside shell options and environment variables
 # shellcheck disable=SC2086,SC2048
-trim_all() {
+trim_all() (
     # Usage: trim_all "   example   string    "
 
     # Disable globbing to make the word-splitting below safe.
@@ -185,10 +187,7 @@ trim_all() {
 
     # Print the argument list as a string.
     printf '%s\n' "$*"
-
-    # Re-enable globbing.
-    set +f
-}
+)
 ```
 
 **Example Usage:**
@@ -269,14 +268,12 @@ This is an alternative to `cut`, `awk` and other tools.
 **Example Function:**
 
 ```sh
-split() {
+# Run function as a subshell (note the parenthesis)
+# To prevent overriding outside shell options and environment variables
+split() (
     # Disable globbing.
     # This ensures that the word-splitting is safe.
     set -f
-
-    # Store the current value of 'IFS' so we
-    # can restore it later.
-    old_ifs=$IFS
 
     # Change the field separator to what we're
     # splitting on.
@@ -292,13 +289,7 @@ split() {
 
     # Print each list value on its own line.
     printf '%s\n' "$@"
-
-    # Restore the value of 'IFS'.
-    IFS=$old_ifs
-
-    # Re-enable globbing.
-    set +f
-}
+)
 ```
 
 **Example Usage:**
@@ -323,16 +314,14 @@ $ split "1, 2, 3, 4, 5" ", "
 **Example Function:**
 
 ```sh
-trim_quotes() {
+# Run function as a subshell (note the parenthesis)
+# To prevent overriding outside shell options and environment variables
+trim_quotes() (
     # Usage: trim_quotes "string"
 
     # Disable globbing.
     # This makes the word-splitting below safe.
     set -f
-
-    # Store the current value of 'IFS' so we
-    # can restore it later.
-    old_ifs=$IFS
 
     # Set 'IFS' to ["'].
     IFS=\"\'
@@ -351,13 +340,7 @@ trim_quotes() {
 
     # Print the quote-less string.
     printf '%s\n' "$*"
-
-    # Restore the value of 'IFS'.
-    IFS=$old_ifs
-
-    # Re-enable globbing.
-    set +f
-}
+)
 ```
 
 **Example Usage:**
