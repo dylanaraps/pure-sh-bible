@@ -55,7 +55,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Cursor Movement](#cursor-movement)
     * [Erasing Text](#erasing-text)
 * [PARAMETER EXPANSION](#parameter-expansion)
-    * [Replacement](#replacement)
+    * [Prefix and Suffix Deletion](#prefix-and-suffix-deletion)
     * [Length](#length)
     * [Default Value](#default-value)
 * [CONDITIONAL EXPRESSIONS](#conditional-expressions)
