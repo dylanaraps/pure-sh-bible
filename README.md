@@ -745,7 +745,7 @@ Contrary to popular belief, there is no issue in utilizing raw escape sequences.
 
 # PARAMETER EXPANSION
 
-## Replacement
+## Prefix and Suffix Deletion
 
 | Parameter | What does it do? |
 | --------- | ---------------- |
