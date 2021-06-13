@@ -460,6 +460,7 @@ lines() {
     done < "$1"
 
     printf '%s\n' "$lines"
+    unset lines
 }
 ```
 
