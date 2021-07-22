@@ -144,7 +144,7 @@ trim_string() {
 
     # Remove all trailing white-space.
     # '${trim##*[![:space:]]}': Strip everything but trailing white-space.
-    # '${trim#${XXX}}': Remove the white-space from the end of the string.
+    # '${trim%${XXX}}': Remove the white-space from the end of the string.
     trim=${trim%${trim##*[![:space:]]}}
 
     printf '%s\n' "$trim"
