@@ -47,6 +47,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Loop over a variable range of numbers](#loop-over-a-variable-range-of-numbers)
     * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
     * [Loop over files and directories](#loop-over-files-and-directories)
+    * [Filter the argument list](#filter-the-argument-list)
 * [VARIABLES](#variables)
     * [Name a variable based on another variable](#name-a-variable-based-on-another-variable)
 * [ESCAPE SEQUENCES](#escape-sequences)
@@ -672,6 +673,31 @@ done
 for dir in ~/Downloads/*/; do
     [ -d "$dir" ] || continue
     printf '%s\n' "$dir"
+done
+```
+
+# Filter the argument list
+
+This is a general technique for looping over the argument list, dropping
+any arguments for which some `<test>` fails.
+
+``` shell
+for arg do
+    shift
+    <test> || continue
+    set -- "$@" "$arg"
+done
+```
+
+**Example:**
+
+Drop arguments that are not directories.  For simple, one-liner
+tests like this we can use `&&` instead of `|| continue`.
+
+``` shell
+for arg do
+    shift
+    [ -d "$arg" ] && set -- "$@" "$arg"
 done
 ```
 
