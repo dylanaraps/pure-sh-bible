@@ -47,6 +47,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Loop over a variable range of numbers](#loop-over-a-variable-range-of-numbers)
     * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
     * [Loop over files and directories](#loop-over-files-and-directories)
+    * [Print unique lines](#print-unique-lines)
 * [VARIABLES](#variables)
     * [Name a variable based on another variable](#name-a-variable-based-on-another-variable)
 * [ESCAPE SEQUENCES](#escape-sequences)
@@ -673,6 +674,62 @@ for dir in ~/Downloads/*/; do
     [ -d "$dir" ] || continue
     printf '%s\n' "$dir"
 done
+```
+
+# Print unique lines
+
+This can be an alternative to `awk '!seen[$0]++'`, which is like `sort
+-u` in that it refuses to print lines that it has already printed but
+it does not sort them; in other words line ordering is preserved.
+
+**Example function:**
+
+``` shell
+print_unique_lines() {
+    # Store the current value of 'IFS' so we
+    # can restore it later.
+    old_ifs=$IFS
+
+    # Change the field separator to split on line
+    # endings (i.e. the newline character).
+    IFS='
+'
+
+    # Ignore any arguments because we need the arguments list to be
+    # empty at first for string comparisons later on.
+    set --
+
+    # Read from standard input line by line.
+    while IFS= read -r line; do
+        # Consider the list (really a newline-delimited
+        # string) of all unique lines kept so far;
+        case $IFS$*$IFS in
+            # Is this line somewhere in that list?
+            # If so, we know we have seen it before, so do nothing.
+            *"$IFS$line$IFS"*) ;;
+
+            # Otherwise, we know have not seen this line
+            # yet, so we append it to the arguments list
+            # as a new unique line.
+            *) set -- "$@" "$line" ;;
+        esac
+    done
+
+    # Print all the unique lines we kept.
+    printf '%s\n' "$@"
+
+    # Restore the value of 'IFS'.
+    IFS=$old_ifs
+}
+```
+
+**Example usage:**
+
+``` shell
+$ printf '%s\n' foo bar foo qux bar | print_unique_lines
+foo
+bar
+qux
 ```
 
 # VARIABLES
