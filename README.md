@@ -37,6 +37,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Parsing a `key=val` file.](#parsing-a-keyval-file)
     * [Get the first N lines of a file](#get-the-first-n-lines-of-a-file)
     * [Get the number of lines in a file](#get-the-number-of-lines-in-a-file)
+    * [Get the number of characters in a file](#get-the-number-of-characters-in-a-file)
     * [Count files or directories in directory](#count-files-or-directories-in-directory)
     * [Create an empty file](#create-an-empty-file)
 * [FILE PATHS](#file-paths)
@@ -468,6 +469,40 @@ lines() {
 ```shell
 $ lines ~/.bashrc
 48
+```
+
+## Get the number of characters in a file
+
+Alternative to `wc -c`.
+
+**Example Function:**
+
+
+```sh
+chars() {
+    # Usage: chars "file"
+
+    # '|| [ -n "$line" ]': This ensures that lines
+    # ending with EOL instead of a newline are still
+    # operated on in the loop.
+    #
+    # 'read' exits with '1' when it sees EOL and
+    # without the added test, the line isn't sent
+    # to the loop.
+    while IFS= read -r line && chars=$((chars+1)) || [ -n "$line" ]; do
+        # "${#line}": Number of characters in '$line'.
+        chars=$((chars+${#line}))
+    done < "$1"
+
+    printf '%s\n' "$chars"
+}
+```
+
+**Example Usage:**
+
+```shell
+$ chars ~/.bashrc
+3526
 ```
 
 ## Count files or directories in directory
