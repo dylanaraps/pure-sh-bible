@@ -48,7 +48,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
     * [Loop over files and directories](#loop-over-files-and-directories)
 * [VARIABLES](#variables)
-    * [Name a variable based on another variable](#name-a-variable-based-on-another-variable)
+    * [Name and access a variable based on another variable](#name-and-access-a-variable-based-on-another-variable)
 * [ESCAPE SEQUENCES](#escape-sequences)
     * [Text Colors](#text-colors)
     * [Text Attributes](#text-attributes)
@@ -679,10 +679,34 @@ done
 
 ## Name and access a variable based on another variable
 
+### Set the dynamic part of the variable name
+
 ```shell
 $ var="world"
+```
+
+#### Option [1]: Set the variable using export
+
+**Warning:** Actually exports the variable, it will be inherited by called programs. Remember to unset.
+
+```shell
+$ export "hello_$var=value"
+```
+
+#### Option [2]: Set the variable using eval
+
+**Warning:** Does not export the variables, but is more dangerous than using export, as eval can execute arbitrary commands (try with `var="=;echo pwned;_"`). Remember to sanitize any data to only have alphanumerals and underscores.
+
+```shell
 $ eval "hello_$var=value"
-$ eval printf '%s\n' "\$hello_$var"
+```
+
+### Access the variable in a command
+
+**NOTE:** The entire sequence is interpreted an extra time by the shell when calling eval. Note the double-escaping in the printf format.
+
+```shell
+$ eval printf '%s\\n' "\$hello_$var"
 value
 ```
 
