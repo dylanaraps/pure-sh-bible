@@ -502,15 +502,26 @@ $ count ~/Pictures/*.jpg
 64
 ```
 
-## Create an empty file
+## Create or truncate a file
 
-Alternative to `touch`.
+Alternative to `truncate -s0`.
 
 ```shell
 :>file
 
 # OR (shellcheck warns for this)
 >file
+```
+
+## Create or update modification time of a file
+
+Alternative to `touch`.
+
+```shell
+:>>file
+
+# OR (shellcheck warns for this)
+>>file
 ```
 
 # FILE PATHS
