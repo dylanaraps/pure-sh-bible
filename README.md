@@ -46,6 +46,7 @@ See something incorrectly described, buggy or outright wrong? Open an issue or s
     * [Loop over a (*small*) range of numbers](#loop-over-a-small-range-of-numbers)
     * [Loop over a variable range of numbers](#loop-over-a-variable-range-of-numbers)
     * [Loop over the contents of a file](#loop-over-the-contents-of-a-file)
+    * [Loop over the output of a command](#loop-over-the-output-of-a-command)
     * [Loop over files and directories](#loop-over-files-and-directories)
 * [VARIABLES](#variables)
     * [Name a variable based on another variable](#name-a-variable-based-on-another-variable)
@@ -647,6 +648,14 @@ done
 while IFS= read -r line || [ -n "$line" ]; do
     printf '%s\n' "$line"
 done < "file"
+```
+
+## Loop over the output of a command
+
+```shell
+command|while IFS= read -r line || [ -n "$line" ]; do
+    printf '%s\n' "$line"
+done
 ```
 
 ## Loop over files and directories
