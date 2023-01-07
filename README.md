@@ -653,11 +653,11 @@ done < "file"
 ## Loop over the output of a command
 
 ```shell
-command|while IFS= read -r line || [ -n "$line" ]; do
+while IFS= read -r line || [ -n "$line" ]; do
     printf '%s\n' "$line"
-done
-```
-
+done <<EOF
+$(command)
+EOF
 ## Loop over files and directories
 
 Don’t use `ls`.
