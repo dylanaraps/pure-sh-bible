@@ -8,7 +8,7 @@ align="center">A collection of pure POSIX sh alternatives to external processes.
 
 <img src="https://user-images.githubusercontent.com/6799467/65239338-4eb34380-dace-11e9-8fe2-7b5e28f1bced.png" width="40%" align="right">
 
-The goal of this book is to document commonly-known and lesser-known methods of doing various tasks using only built-in POSIX `sh` features. Using the snippets from this bible can help remove unneeded dependencies from scripts and in most cases make them faster. I came across these tips and discovered a few while developing [KISS Linux](https://kisslinux.xyz/) and other smaller projects.
+The goal of this book is to document commonly-known and lesser-known methods of doing various tasks using only built-in POSIX `sh` features. Using the snippets from this bible can help remove unneeded dependencies from scripts and in most cases make them faster. I came across these tips and discovered a few while developing [KISS Linux](https://kisslinux.org/) and other smaller projects.
 
 The snippets below are all linted using `shellcheck`.
 
