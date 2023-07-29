@@ -242,6 +242,27 @@ case $var in
 esac
 ```
 
+**Using printf builtin:**
+
+**Example function:**
+
+```sh
+startswith() {
+
+    if [ "$(printf "%.${#1}s" "$2")" = "$1" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+```
+
+**Example usage:**
+
+```sh
+$ startswith 'fo' 'foo'
+```
+
 ## Check if string ends with sub-string
 
 **Using a case statement:**
